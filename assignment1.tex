@@ -1,0 +1,213 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,graphicx,tikz,standalone}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usetikzlibrary{trees}
+\title{STA247 Fall 2015, Assignment 1}
+\author{Connor Peet \#1001088208}
+\renewcommand{\today}{~}
+\hypersetup{pdfpagemode=Fullscreen,
+  colorlinks=true,
+  linkfileprefix={}}
+\newcommand{\floor}[1]{\lfloor #1\rfloor}
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+\item If A,B, and C three events such that $P(A) = P(B) = P(C) = 1$. Show that
+$P(A \cap B) = P(A \cap C) = P(B \cap C) = P(A \cap B \cap C) = 1$.
+    \begin{itemize}
+    \item $P(B') = 1 - P(B)$ by Theorem 1.1. Therefore $P(B') = 1 - 1 = 0$.
+    \item Then since $P(A \cap B') \leq P(B)' \land P(A \cap B') \leq P(A)$, $P(A \cap B') = 0$.
+    \item By Theorem 1.4 $P(A) = P(A \cap B) + P(A \cap B')$.
+    \item Then $1 = P(A \cap B) + 0$, so $P(A \cap B) = 1$.
+    \item This above steps may be repeated, substituting $C$ for $A$ to obtain $P(C \cap B) = 1$, then $C$ for $B$ to obtain that $P(A \cap C) = 1$. Afterwards it may again be repeated, but substituting $A \cap B$, as shown below.
+        \begin{itemize}
+        \item $P((A \cap B)') = 1 - P(A \cap B)$ by Theorem 1.1. Therefore $P((A \cap B)') = 1 - 1 = 0$.
+        \item Then since $P((B \cap C) \cap (A \cap B)') \leq P(A \cap B)' \land P((B \cap C) \cap (A \cap B)') \leq P(B \cap C)$, $P((B \cap C) \cap (A \cap B)') = 0$.
+        \item By Theorem 1.4 $P(B \cap C) = P((B \cap C) \cap (A \cap B)) + P((B \cap C) \cap (A \cap B)')$.
+        \item Then $1 = P((B \cap C) \cap (A \cap B)) + 0$, so $P((B \cap C) \cap (A \cap B)) = 1$.
+        \item Then $P(A \cap B \cap C) = 1$
+        \end{itemize}
+    \item Then $P(A \cap B) = P(A \cap C) = P(B \cap C) = P(A \cap B \cap C) = 1$.
+    \end{itemize}
+\item If A and B are two events such that $A \subseteq B$, show that:
+    \begin{enumerate}
+    \item $P(B') \leq P(A')$:
+        \begin{itemize}
+        \item $P(A) \leq P(B)$ by Theorem 1.1.
+        \item Then $1 - P(A') \leq 1 - P(B')$ since $P(S) = 1 - P(S')$ Theorem 1.1
+        \item Then $P(B') \leq P(A')$ by simplifying the expression.
+        \end{itemize}
+    \item $P(A \cap B') = 0$:
+        \begin{itemize}
+        \item $P(A \cap B) = P(A)$ since $A \subseteq B$.
+        \item Also $P(A) = P(A \cap B) + P(A \cap B')$ by Theorem 1.4.
+        \item Then $P(A) = P(A) + P(A \cap B')$
+        \item Then $P(A \cap B') = 0$
+        \end{itemize}
+    \item $P(B \cap A') = P(B) - P(A)$:
+        \begin{itemize}
+        \item $P(A \cap B) = P(A)$ since $A \subseteq B$.
+        \item Also $P(B) = P(B \cap A) + P(B \cap A')$ by Theorem 1.4.
+        \item Then $P(B) = P(A) + P(B \cap A')$
+        \item Then $P(B \cap A') = P(B) - P(A)$
+        \end{itemize}
+    \end{enumerate}
+\item Let A,B, and C be three events such that $A \subset B \subset C$ and $P(A) = 1/4, P(B) = 5/12$,
+and $P(C) = 7/12$. Find:
+    \begin{enumerate}
+    \item $P(A \cap B' \cap C')$:
+        \begin{itemize}
+        \item By Theorem 1.4 $P(A) = P(A \cap (B' \cap C')) + P(A \cap (B' \cap C')')$
+        \item Then $P(A) = P(A \cap (B' \cap C')) + P(A \cap (B \cup C))$ using De Morgan's laws.
+        \item Also $B \cup C = C$ since $B \subset C$
+        \item Then $P(A) = P(A \cap B' \cap C') + P(A \cap C)$ by the above.
+        \item Also $A \cap C = A$ since $A \subset C$
+        \item Then $P(A \cap B' \cap C') = 0$
+        \end{itemize}
+    \item $P(A' \cap B' \cap C')$:
+        \begin{itemize}
+        \item By Theorem 1.4 $P(A') = P(A' \cap (B' \cap C')) + P(A' \cap (B' \cap C')')$
+        \item Then $P(A') = P(A' \cap (B' \cap C')) + P(A' \cap (B \cup C))$ using De Morgan's laws.
+        \item Also $B \cup C = C$ since $B \subset C$
+        \item Then $P(A') = P(A' \cap B' \cap C') + P(A' \cap C)$ by the above.
+        \item Also $P(A' \cap C) = P(C) - P(A)$ as shown in Question 2.
+        \item Also $P(A') = 1 - P(A)$ by Theorem 1.1.
+        \item Then $P(A' \cap B' \cap C') = 1 - P(A) - (P(C) - P(A)) = 1 - 1/2 - 7/12 + 1/2 = 5/12$
+        \end{itemize}
+    \end{enumerate}
+\item Suppose that A,B, and C are mutually independent events with P(A) = 0.5, P(B) =
+0.4, and P(C) = 0.3. Find:
+    \begin{enumerate}
+    \item $P(A \cup (B \cap C'))$:
+        \begin{itemize}
+        \item By Theorem 1.4 $P(A \cup (B \cap C')) = P(A) + P(B \cap C') - P(A \cap (B \cap C'))$
+        \item Also $P(C') = 1 - P(C)$ by theorem 1.1.
+        \item Then $P(A \cup (B \cap C')) = P(A) + P(B) \times (1 - P(C)) - P(A) \times P(B) \times (1 - P(C))$ by definition 4.2 of mutual independence.
+        \item Then $P(A \cup (B \cap C')) = 0.5 + 0.4 \times (1 - 0.3) - 0.5 \times 0.4 \times (1 - 0.3)$
+        \item Then $P(A \cup (B \cap C')) = 0.64$
+        \end{itemize}
+    \item $P(A | (C' \cup A)$:
+        \begin{itemize}
+        \item Then $P(A | (C' \cup A)) = \frac{P(A \cap (C' \cup A))}{P(C' \cup A)}$
+        \item Also $A \cap (C' \cup A) = A$
+        \item Then $P(A | (C' \cup A)) = \frac{P(A)}{P(C' \cup A)}$
+        \item Then $P(A | (C' \cup A)) = \frac{P(A)}{(1 - P(C)) + P(A)}$ since the events and their complements are mutually independent.
+        \item Then $P(A | (C' \cup A)) = \frac{0.5}{(1 - 0.3) + 0.5}$.
+        \item Then $P(A | (C' \cup A)) = 4.17 \times 10^{-1}$.
+        \end{itemize}
+    \end{enumerate}
+\item How many even five digit numbers can be made if...
+    \begin{enumerate}
+    \item Repetition is allowed.
+        \begin{itemize}
+        \item The number of possible even digit numbers is $9 \times 10 \times 10 \times 10 \times 5 = 45000$. Order matters. The first digit must not be a zero (otherwise it would not have five digits), and the last digit may be one of $0, 2, 4, 6, 8$ - five possibilities.
+        \end{itemize}
+    \item Repetition is not allowed.
+        \begin{itemize}
+        \item todo. Answer is 13776.
+        \end{itemize}
+    \end{enumerate}
+\item Find the probability that 9 players in a baseball team all have their birthdays on...
+    \begin{enumerate}
+    \item Monday or Thursday (but not all on one day).
+    \item Exactly two days of the week (but not all in one day).
+        \begin{itemize}
+        \item The probability that a person $i$ has their birthday on day $A$ of the week is $P(A_i) = \frac{1}{7}$.
+        \item The probability are pairwise independent events, so the probability of someone having their birthday on one of $A$ or $B$ days is $P(A_i \cup B_i) = P(A_i) + P(B_i) = \frac{2}{7}$.
+        \item Each person's birthday is mutually independent of the others. Therefore, everyone having their birthday on exactly two days (or, Monday and Thursday) is $\prod\limits_{i=1}^9 P(A_i \cup B_i) - \prod\limits_{i=1}^9 P(A_i) = (\frac{2}{7})^9 - (\frac{1}{7})^9 = 1.3 \times 10^{-5}$
+        \end{itemize}
+    \end{enumerate}
+\item A box contains 10 black balls and 8 red balls. One balls is drawn at random. The ball is returned to the box together with 1 additional ball of the same color as the drawn ball. If we now pick one ball from the new composition of balls, find the probability that the first ball was red given that the second ball is red.
+    \begin{itemize}
+    \item Represent Red balls by $R$ and black balls by $B$. The probability of Choosing Red or Black is $P(R)$ and $P(B)$ respectively. We are asked to find $P(R_1|R_2)$. The tree diagram for the choices in the above scenario is as follows:\par
+    \begin{minipage}{\linewidth}
+        \centering
+        \tikzstyle{bag} = [text width=4em, text centered]
+        \tikzstyle{end} = [circle, minimum width=3pt,fill, inner sep=0pt]
+        \tikzstyle{level 1}=[level distance=4cm, sibling distance=2.5cm]
+        \tikzstyle{level 2}=[level distance=4cm, sibling distance=2cm]
+
+        \begin{tikzpicture}[grow=right, sloped]
+        \node[bag] {Bag $10 B, 8 R$}
+            child {
+                node[bag] {Bag $11 B, 8 R$}
+                    child {
+                        node[end] {}
+                        edge from parent
+                        node[above] {$P(B|B) = \frac{11}{19}$}
+                    }
+                    child {
+                        node[end] {}
+                        edge from parent
+                        node[above] {$P(R|B) = \frac{8}{19}$}
+                    }
+                edge from parent
+                node[above] {$P(B) = \frac{10}{18}$}
+            }
+            child {
+                node[bag] {Bag $10 B, 9 R$}
+                    child {
+                        node[end] {}
+                        edge from parent
+                        node[above] {$P(B|R) = \frac{10}{19}$}
+                    }
+                    child {
+                        node[end] {}
+                        edge from parent
+                        node[above] {$P(R|R) = \frac{9}{19}$}
+                    }
+                edge from parent
+                node[above] {$P(R) = \frac{8}{18}$}
+            };
+        \end{tikzpicture}
+    \end{minipage}
+    \item We can use Bayes' Theorem to solve this.
+        \begin{equation}
+        \begin{aligned}
+            P(R|R) & =  \frac{P(R|R) \times P(R)}{P(R)} \\
+                   & = \frac{P(R|R) \times P(R)}{P(R|R) \times P(R) + P(R|B) \times P(B)} \\
+                   & = \frac{\frac{9}{19} \times \frac{8}{19}}{\frac{9}{19} \times \frac{8}{19} + \frac{10}{18} \times \frac{8}{19}} \\
+                   & = \frac{81}{176} \approx 4.60 \times 10^{-1}
+        \end{aligned}
+        \end{equation}
+        \end{itemize}
+\item Write the detailed solution of Question 9 page 36 from the book (G \& S): \
+    Define the probability of choosing art $P(A)$, French $P(F)$, and mathematics $P(M)$. It gives us that $P(A) = 5/8$, $P(F) = 5/8$, $P(F \cap A) = 1/4$. Written in set notation, Question 9 then asks to find following:
+    \begin{itemize}
+    \item Find $P(M)$. We are given that a student must chose exactly two of the three electives. Therefore, students who do not chose to take both French and art must take mathematics. The probability of this happening is simply $P((F \cap A)')$, which by theorem 1.1 $P((F \cap A)') = 1 - P(F \cap A) = 3/4$
+    \item Find $P(F \cup A)$.
+        \begin{itemize}
+        \item $P(F \cup A) = P(F) + P(A) - P(F \cap A)$
+        \item Then $P(F \cup A) = 5/8 + 5/8 - 1/4 = 1$
+        \end{itemize}
+    \end{itemize}
+\item Write the detailed solution of Question 15 page 36 from the book (G \& S): \
+    John and Mary are taking a mathematics course. The course has only three grades: A, B, and C. The probability that John gets a B is .3. The probability that Mary gets a B is .4. The probability that neither gets an A but at least one gets a B is .1. What is the probability that at least one gets a B but neither gets a C?
+    \begin{itemize}
+    \item We are given that:
+        \begin{itemize}
+        \item $P(J_B) = 0.3$
+        \item $P(M_B) = 0.4$
+        \item $P((J_A \cup M_A)' \cap (J_B \cap M_B)) = 0.1$
+        \item Find $P((J_B \cup M_B) \cap (J_C \cup M_C)')$
+        \end{itemize}
+    \item Then $P((J_B \cup M_B) \cap (J_C \cup M_C)') = P((J_B \cup M_B) \cap (J_B \cup M_B \cup (J_A \cup M_A)))$
+    \item Then $P((J_B \cup M_B) \cap (J_C \cup M_C)') = P((J_B \cup M_B) \cap (J_A \cup M_A))$
+    \item Then $P((J_B \cup M_B) \cap (J_C \cup M_C)') = 0.3 + 0.4 - 0.1 = 0.6$
+    \end{itemize}
+\item Write the detailed solution of Question 33 page 155 from the book (G \& S): \
+    Let $A_1$, $A_2$, and $A_3$ be events, and let $B_i$ represent either $A_i$ or its complement $A_i'$. Then there are eight possible choices for the triple ($B_1, B_2, B_3$). Prove that the events $A_1, A_2, A_3$ are independent if and only if $P(B_1 \cap B_2 \cap B_3) = P(B_1)P(B_2)P(B_3)$ for all eight of the possible choices for the triple.
+    \begin{itemize}
+    \item Find $P(M)$. We are given that a student must chose exactly two of the three electives. Therefore, students who do not chose to take both French and art must take mathematics. The probability of this happening is simply $P((F \cap A)')$, which by theorem 1.1 $P((F \cap A)') = 1 - P(F \cap A) = 3/4$
+    \item Find $P(F \cup A)$.
+        \begin{itemize}
+        \item $P(F \cup A) = P(F) + P(A) - P(F \cap A)$
+        \item Then $P(F \cup A) = 5/8 + 5/8 - 1/4 = 1$
+        \end{itemize}
+    \end{itemize}
+\end{enumerate}
+
+\end{document}
