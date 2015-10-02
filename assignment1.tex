@@ -103,12 +103,21 @@ and $P(C) = 7/12$. Find:
     \begin{enumerate}
     \item Repetition is allowed.
         \begin{itemize}
-        \item The number of possible even digit numbers is $9 \times 10 \times 10 \times 10 \times 5 = 45000$. Order matters. The first digit must not be a zero (otherwise it would not have five digits), and the last digit may be one of $0, 2, 4, 6, 8$ - five possibilities.
+        \item The number of possible even digit numbers is $9 \times 10 \times 10 \times 10 \times 5 = 45000$ (looking at the digit spaces from left to right). Order matters. The first digit must not be a zero (otherwise it would not have five digits) so there are nine possibilities, and the last digit may be one of $0, 2, 4, 6, 8$ - five possibilities.
         \end{itemize}
     \item Repetition is not allowed.
         \begin{itemize}
-        \item todo. Answer is 13776.
+        \item Let's look at numbers starting by their first digit. Let $N$ be the number of numbers up to five digits number that end with a digit. Visualizing the digit spaces from right to left:
+        \begin{equation}
+        \begin{split}
+            N(0) = 1 \times 9 \times 8 \times 7 \times 6 \\
+            N(2) = 1 \times 9 \times 8 \times 7 \times 6 \\
+            \ldots \\
+            \sum\limits_{i=0}^4 N(2i) = 5 \times (1 \times 9 \times 8 \times 7 \times 6) = 15120
+        \end{split}
+        \end{equation}
         \end{itemize}
+        \item However, we must exclude numbers which start with a zero. The number of those are $1 * 8 * 7 * 6 * 4 = 1344$, so the solution is $15120 - 1344 = 13776$
     \end{enumerate}
 \item Find the probability that 9 players in a baseball team all have their birthdays on...
     \begin{enumerate}
@@ -122,7 +131,7 @@ and $P(C) = 7/12$. Find:
     \end{enumerate}
 \item A box contains 10 black balls and 8 red balls. One balls is drawn at random. The ball is returned to the box together with 1 additional ball of the same color as the drawn ball. If we now pick one ball from the new composition of balls, find the probability that the first ball was red given that the second ball is red.
     \begin{itemize}
-    \item Represent Red balls by $R$ and black balls by $B$. The probability of Choosing Red or Black is $P(R)$ and $P(B)$ respectively. We are asked to find $P(R_1|R_2)$. The tree diagram for the choices in the above scenario is as follows:\par
+    \item Represent Red balls by $R$ and black balls by $B$. The probability of Choosing Red or Black is $P(R)$ and $P(B)$ respectively. We are asked to find $P(R|R)$. The tree diagram for the choices in the above scenario is as follows:\par
     \begin{minipage}{\linewidth}
         \centering
         \tikzstyle{bag} = [text width=4em, text centered]
@@ -198,15 +207,78 @@ and $P(C) = 7/12$. Find:
     \item Then $P((J_B \cup M_B) \cap (J_C \cup M_C)') = P((J_B \cup M_B) \cap (J_A \cup M_A))$
     \item Then $P((J_B \cup M_B) \cap (J_C \cup M_C)') = 0.3 + 0.4 - 0.1 = 0.6$
     \end{itemize}
-\item Write the detailed solution of Question 33 page 155 from the book (G \& S): \
+\item Write the detailed solution of Question 33 page 155 from the book (G \& S): \\
     Let $A_1$, $A_2$, and $A_3$ be events, and let $B_i$ represent either $A_i$ or its complement $A_i'$. Then there are eight possible choices for the triple ($B_1, B_2, B_3$). Prove that the events $A_1, A_2, A_3$ are independent if and only if $P(B_1 \cap B_2 \cap B_3) = P(B_1)P(B_2)P(B_3)$ for all eight of the possible choices for the triple.
     \begin{itemize}
-    \item Find $P(M)$. We are given that a student must chose exactly two of the three electives. Therefore, students who do not chose to take both French and art must take mathematics. The probability of this happening is simply $P((F \cap A)')$, which by theorem 1.1 $P((F \cap A)') = 1 - P(F \cap A) = 3/4$
-    \item Find $P(F \cup A)$.
-        \begin{itemize}
-        \item $P(F \cup A) = P(F) + P(A) - P(F \cap A)$
-        \item Then $P(F \cup A) = 5/8 + 5/8 - 1/4 = 1$
-        \end{itemize}
+    \item Independence is defined in the slides to be that $P(A \cap B) = P(A)P(B)$. We can use this iteratively to prove the above statement.
+    \item $P(A_1 \cap A_2 \cap A_3)$
+        \begin{equation}
+        \begin{aligned}
+        P(A_1 \cap A_2 \cap A_3) = & P(A_1) P(A_2 \cap A_3) \\
+        P(A_1 \cap A_2 \cap A_3) = & P(A_1) P(A_2) A_3
+        \end{aligned}
+        \end{equation}
+    \item $P(A_1' \cap A_2 \cap A_3)$
+        \begin{equation}
+        \begin{aligned}
+        P(A_1' \cap A_2 \cap A_3) = & P(A_2 \cap A_3) - P(A_1 \cap A_2 \cap A_3) \\
+        P(A_1' \cap A_2 \cap A_3) = & P(A_2) P(A_3) - P(A_1) P(A_2) P(A_3) \\
+        P(A_1' \cap A_2 \cap A_3) = & P(A_2) P(A_3) (1 - P(A_1)) \\
+        P(A_1' \cap A_2 \cap A_3) = & P(A_2) P(A_3) P(A_1') \\
+        \end{aligned}
+        \end{equation}
+    \item $P(A_1 \cap A_2' \cap A_3)$
+        \begin{equation}
+        \begin{aligned}
+        P(A_1 \cap A_2' \cap A_3) = & P(A_1 \cap A_3) - P(A_1 \cap A_2 \cap A_3) \\
+        P(A_1 \cap A_2' \cap A_3) = & P(A_1) P(A_3) - P(A_1) P(A_2) P(A_3) \\
+        P(A_1 \cap A_2' \cap A_3) = & P(A_1) P(A_3) (1 - P(A_2)) \\
+        P(A_1 \cap A_2' \cap A_3) = & P(A_1) P(A_2') P(A_3) \\
+        \end{aligned}
+        \end{equation}
+    \item $P(A_1 \cap A_2 \cap A_3')$
+        \begin{equation}
+        \begin{aligned}
+        P(A_1 \cap A_2 \cap A_3') = & P(A_1 \cap A_2) - P(A_1 \cap A_2 \cap A_3) \\
+        P(A_1 \cap A_2 \cap A_3') = & P(A_1) P(A_2) - P(A_1) P(A_2) P(A_3) \\
+        P(A_1 \cap A_2 \cap A_3') = & P(A_1) P(A_2) (1 - P(A_3)) \\
+        P(A_1 \cap A_2 \cap A_3') = & P(A_1) P(A_2) P(A_3') \\
+        \end{aligned}
+        \end{equation}
+    \item $P(A_1' \cap A_2' \cap A_3)$
+        \begin{equation}
+        \begin{aligned}
+        P(A_1' \cap A_2' \cap A_3) = & [P(A_3) - P(A_3 \cap A_2)] \times [P(A_3) - P(A_3 \cap A_1)] \\
+        P(A_1' \cap A_2' \cap A_3) = & [P(A_3) - P(A_3) P(A_2)] \times [P(A_3) - P(A_3) P(A_1)] \\
+        P(A_1' \cap A_2' \cap A_3) = & P(A_3) (1 - P(A_2)) - (1 - P(A_3)) \\
+        P(A_1' \cap A_2' \cap A_3) = & P(A_1') P(A_2') P(A_3) \\
+        \end{aligned}
+        \end{equation}
+    \item $P(A_1 \cap A_2' \cap A_3')$
+        \begin{equation}
+        \begin{aligned}
+        P(A_1 \cap A_2' \cap A_3') = & [P(A_1) - P(A_1 \cap A_2)] \times [P(A_1) - P(A_1 \cap A_3)] \\
+        P(A_1 \cap A_2' \cap A_3') = & [P(A_1) - P(A_1) P(A_2)] \times [P(A_1) - P(A_1) P(A_3)] \\
+        P(A_1 \cap A_2' \cap A_3') = & P(A_1) (1 - P(A_2)) - (1 - P(A_3)) \\
+        P(A_1 \cap A_2' \cap A_3') = & P(A_1) P(A_2') P(A_3') \\
+        \end{aligned}
+        \end{equation}
+    \item $P(A_1' \cap A_2 \cap A_3')$
+        \begin{equation}
+        \begin{aligned}
+        P(A_1' \cap A_2 \cap A_3') = & [P(A_2) - P(A_2 \cap A_1)] \times [P(A_2) - P(A_2 \cap A_3)] \\
+        P(A_1' \cap A_2 \cap A_3') = & [P(A_2) - P(A_2) P(A_1)] \times [P(A_2) - P(A_2) P(A_3)] \\
+        P(A_1' \cap A_2 \cap A_3') = & P(A_2) (1 - P(A_1)) - (1 - P(A_3)) \\
+        P(A_1' \cap A_2 \cap A_3') = & P(A_2) P(A_1') P(A_3') \\
+        \end{aligned}
+        \end{equation}
+    \item $P(A_1' \cap A_2' \cap A_3')$
+        \begin{equation}
+        \begin{aligned}
+        P(A_1' \cap A_2 \cap A_3') = & (1 - P(A_1)) \times (1 - P(A_2)) \times (1 - P(A_3)) \\
+        P(A_1' \cap A_2 \cap A_3') = & P(A_1') P(A_2') P(A_3') \\
+        \end{aligned}
+        \end{equation}
     \end{itemize}
 \end{enumerate}
 
