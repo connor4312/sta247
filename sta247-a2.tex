@@ -1,0 +1,94 @@
+\documentclass{article}
+\usepackage{amssymb,graphicx}
+\usepackage{hyperref}
+\usepackage{pgfplots}
+\usepackage[fleqn]{amsmath}
+
+\pgfplotsset{compat=1.6}
+\pgfplotsset{soldot/.style={only marks,mark=*}}
+\pgfplotsset{holdot/.style={fill=white,only marks,mark=*}}
+
+\title{STA247 Fall 2015, Assignment 2}
+\author{Connor Peet \#1001088208}
+\renewcommand{\today}{~}
+\hypersetup{pdfpagemode=Fullscreen,
+  colorlinks=true,
+  linkfileprefix={}}
+\newcommand{\floor}[1]{\lfloor #1\rfloor}
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+\item For the probability distribution
+    \begin{table}[h] \centering
+      \begin{tabular}{c|c|c|c|c}
+        $x$ & 0 & 1 & 2 & 3 \\ \hline
+        $p(x)$& 0.3 & 0.4 & 0.2&$k^2$
+      \end{tabular}
+    \end{table}
+    \begin{enumerate}
+    \item [(a)] Find: $k$
+        \begin{itemize}
+        \item We know that the total probability must equal 1, so therefore $0.3 + 0.4 + 0.2 + k^2 = 1$.
+        \item Then $k = \sqrt{1 - 0.2 - 0.4 - 0.3} \approx 0.3162$
+        \end{itemize}
+    \item [(b)] Find $P(0< X \le 2)$:
+        \begin{itemize}
+        \item{itemize} To do this, we can simply add the discrete probabilities $p(0) + p(1) + p(2)$.
+        \item{itemize} Then $P(0< X \le 2) = 0.3 + 0.4 + 0.2 = 0.9$
+        \end{itemize}
+    \item [(c)] Find $F(x)$, the cumulative distribution function:
+        \begin{equation*}
+        F(x) = \begin{cases}
+            0.3, & x < 1 \\
+            0.7, & 1 \leq x < 2 \\
+            0.9, & 2 \leq x < 3 \\
+            1,   & 3 \leq x < 4 \\
+        \end{cases}
+        \end{equation*}
+    \item [(d)] Graph $F(x)$: \\
+        \begin{tikzpicture}
+            \begin{scope}
+                \begin{axis}[xlabel={x},ylabel=F(x)]
+                    \addplot[domain=0:1]{0.3};
+                    \addplot[domain=1:2]{0.7};
+                    \addplot[domain=2:3]{0.9};
+                    \addplot[domain=3:4]{1};
+                    \addplot[holdot] coordinates{(1,0.3)(2,0.7)(3,0.9)(4,1)};
+                    \addplot[soldot] coordinates{(0,0.3)(1,0.7)(2,0.9)(3,1)};
+                \end{axis}
+            \end{scope}
+        \end{tikzpicture}
+        \end{enumerate}
+    \item [(e)] Find $E(X)$:
+        \begin{itemize}
+        \item The expected value is simply the weighted average of all values.
+        \item This can be found with $E(X) = (0)(0.3) + (1)(0.4) + (2)(0.2) + (3)(0.1) = 1.1$.
+        \end{itemize}
+    \item [(d)] Find $Var(X)$;
+        \begin{itemize}
+        \item The variance can be expressed as $Var(X) = E(X^2) - E(X)$.
+        \item Therefore the variance is $Var(X) = E(X^2) - E(X)= (0.3)(0)^2 + (0.4)(1)^2 + (0.2)(2)^2 + (0.1)(3)^2 - 1.1= 1$.
+        \end{itemize}
+\item Let X be a discrete random variable with the following a cumulative distribution function.
+    \begin{itemize}
+    \item [(a)] $P(X = 5)$
+        \begin{itemize}
+        \item The answer is contained in the given function: $\frac{3}{4} - \frac{1}{2} = \frac{1}{4}$
+        \end{itemize}
+    \item [(b)] $P(1.3 < X < 6)$:
+        \begin{itemize}
+        \item This is a discrete distribution, so then $P(1.3 < X < 3) = 0$ and $P(5 \leq X < 6) = P(5 \leq X < 7)$.
+        \item Then $P(1.3 < x < 6) = P(1.3 < X < 3) + P(3 \leq X < 5) + P(5 \leq X < 7) = 0 + \frac{1}{4} + \frac{1}{4} = \frac{1}{2}$
+        \end{itemize}
+    \item [(c)] $P(X \le 5|X \ge 2)$:
+        \begin{itemize}
+        \item Again, since this is discrete, $P(X \geq 2) = P(X \geq 3)$.
+        \item So $P(X \le 5|X \ge 2)$ = $\frac{P(X = 5) + P(X = 3)}{P(X = 3) + P(X = 5) + P(X = 7)} = \frac{1/2}{3/4} = \frac{3}{8}$.
+        \end{itemize}
+    \item [(d)] $E(X) = (0)(0) + (\frac{1}{4})(1) + (\frac{1}{4})(3) + (\frac{1}{4})(5) + (\frac{1}{4})(7) = 4$
+    \item [(e)] $Var(x) = E(X^2) - E(X) = (0)(0) + (\frac{1}{4})(1)^2 + (\frac{1}{4})(3)^2 + (\frac{1}{4})(5)^2 + (\frac{1}{4})(7)^2  - 4 = 21 - 4 = 17$
+    \end{itemize}
+\end{enumerate}
+
+\end{document}
