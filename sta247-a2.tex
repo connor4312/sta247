@@ -70,6 +70,7 @@
         \item The variance can be expressed as $Var(X) = E(X^2) - E(X)$.
         \item Therefore the variance is $Var(X) = E(X^2) - E(X)= (0.3)(0)^2 + (0.4)(1)^2 + (0.2)(2)^2 + (0.1)(3)^2 - 1.1= 1$.
         \end{itemize}
+
 \item Let X be a discrete random variable with the following a cumulative distribution function.
     \begin{itemize}
     \item [(a)] $P(X = 5)$
@@ -89,6 +90,47 @@
     \item [(d)] $E(X) = (0)(0) + (\frac{1}{4})(1) + (\frac{1}{4})(3) + (\frac{1}{4})(5) + (\frac{1}{4})(7) = 4$
     \item [(e)] $Var(x) = E(X^2) - E(X) = (0)(0) + (\frac{1}{4})(1)^2 + (\frac{1}{4})(3)^2 + (\frac{1}{4})(5)^2 + (\frac{1}{4})(7)^2  - 4 = 21 - 4 = 17$
     \end{itemize}
+
+\item Suppose $X\sim Poisson (\lambda)$.
+    \begin{itemize}
+    \item [(a)] Show that $p(k+1)=\frac{\lambda}{k+1}p(k)$, where $p(k)=P(X=k)$.
+        \begin{itemize}
+        \item This can be proven like any recursive algorithim. For $k \in \mathbb{N}$, define $D(k)$ to be that $p(k)=P(X=k)$.
+        \item \underline{Base case}: $D(0)$.
+            \begin{itemize}
+            \item Note that $0, 1 \in \mathbb{N}$.
+            \item Then $p(0) = \frac{\lambda^0 e^{-\lambda}}{0!} = e^{-\lambda}$ by definition of a Poisson distribution.
+            \item Also $p(1) = \frac{\lambda^1 e^{-\lambda}}{1!} = \frac{\lambda}{0 + 1} e^{-\lambda}$ by the same definition.
+            \item Then $p(1) = p(0 + 1) = \frac{\lambda}{0+1}p(0)$.
+            \item Then for $k = 0, D(0)$.
+            \end{itemize}
+        \item \underline{Inductive step}: Assume $k \in \mathbb{N}, D(k)$
+            \begin{itemize}
+            \item Then $p(k) = \frac{\lambda^k e^{-\lambda}}{k!}$ by IH and definition of a Poisson distribution.
+            \item Then $p(k+1) = \frac{\lambda^{k+1} e^{-\lambda}}{(k+1)!}$.
+            \item Then $p(k+1) = \frac{\lambda \lambda^k e^{-\lambda}}{(k+1)(k)!}$.
+            \item Then $p(k+1) = \frac{\lambda}{k+1} \frac{\lambda^k e^{-\lambda}}{k!}$.
+            \item Then $p(k+1) = \frac{\lambda}{k+1} p(k)$.
+            \item Then $D(k+1)$.
+            \end{itemize}
+        \item Then $p(k+1)=\frac{\lambda}{k+1}p(k)$.
+        \end{itemize}
+    \item [(b)] If $\lambda=2$, compute $p(0)$.
+        \begin{itemize}
+        \item In the base case of the above proof, we found $p(0) = e^{-\lambda}$.
+        \item So for $\lambda=2$, $p(0) = e^{-2} \approx 0.1353$
+        \end{itemize}
+    \item [(c)] Use the recursive relation in (a) and and $p(0)$ in (b), to find $p(1),p(2),p(3),$ and $p(4)$.
+        \begin{itemize}
+        \item $p(1) = \frac{2}{1+1}p(0) = e^{-2} \approx 0.1353$
+        \item $p(2) = \frac{2}{3}p(1) = \frac{2}{3} e^{-2} \approx 0.0902$
+        \item $p(3) = \frac{2}{4}p(2) = \frac{2}{4} \frac{2}{3} e^{-2} \approx 0.0451$
+        \item $p(4) = \frac{2}{5}p(2) = \frac{2}{5} \frac{2}{4} \frac{2}{3} e^{-2} \approx 0.0180$
+        \end{itemize}
+    \end{itemize}
+
+\item
+
 \end{enumerate}
 
 \end{document}
