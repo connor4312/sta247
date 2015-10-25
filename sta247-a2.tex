@@ -151,7 +151,16 @@
         \item $p(4) = \frac{2}{5}p(2) = \frac{2}{5} \frac{2}{4} \frac{2}{3} e^{-2} \approx 0.0180$
         \end{itemize}
     \end{itemize}
-
+\item Questions:
+    \begin{itemize}
+    \item [(a)] A random variable $X$ has a binomial distribution, and a random variable $Y$ has a Poisson distribution. If $E(X)=E(Y)$, determine which random variable has the larger variance. Explain.
+        \begin{itemize}
+        \item If $E(X) = E(Y)$, then $np = \lambda$. Also, $V(Y) = \lambda$.
+        \item Also $np(1 - p) < np$ since it simplifies to $-p < 0$, and $p \in \mathbb{R}, 0 \leq p \leq 1$.
+        \item Then $np(1 - p) < \lambda$.
+        \item Then $V(X) < V(Y)$.
+        \end{itemize}
+    \end{itemize}
 \item Let $X \sim Gemoetric(p)$.
     \begin{enumerate}
     \item [(a)] Show that $P(X>k)=(1-p)^k$ for any integer $k$.
