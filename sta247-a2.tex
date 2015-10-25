@@ -91,6 +91,29 @@
     \item [(e)] $Var(x) = E(X^2) - E(X) = (0)(0) + (\frac{1}{4})(1)^2 + (\frac{1}{4})(3)^2 + (\frac{1}{4})(5)^2 + (\frac{1}{4})(7)^2  - 4 = 21 - 4 = 17$
     \end{itemize}
 
+\item Let $X$ be the number of times a basketball player scores in free throws. Suppose that the probability that he scores at least once in six free throws is equal to 0.999936.
+    \begin{enumerate}
+    \item [(a)] Find the probability mass function of  $X$.
+        \begin{itemize}
+        \item The probability of scoring at least one in six throws is $P(x \geq 1) = 1 - P(0) = 0.999936$.
+        \item Then $P(0) = 0.000064 = (1 - p)^{6}$.
+        \item Then $p = \frac{4}{5}$.
+        \item So the probability mass function is $p(x) = \binom{n}{x} \frac{4}{5}^x \frac{1}{5}^{n-x}, x \in \mathbb{N}$
+        \end{itemize}
+    \item [(b)] Find $P(X \ge 3)$. [You can use R to find the answer]
+        \begin{itemize}
+        \item Using R, $pbinom(2, size=6, prob=0.2) = 0.90112$
+        \end{itemize}
+    \item [(c)] Find $E(X(X-1))$.
+        \begin{itemize}
+        \item Note that $E(X(X - 1)) = E(X^2 - X) = E(X^2) - E(X)$.
+        \item Then $E(X^2) - E(X) = np(1 - p) + n^2p^2 - np$ using definitions from the lectures.
+        \item Then $E(X^2) - E(X) = np(1 - p + np - 1) = np^2(n - 1)$
+        \item Then $E(X^2) - E(X) = n(\frac{4}{5})^2(n - 1)$
+        \item Then $E(X(X - 1)) = n\frac{16}{25}(n - 1)$
+        \end{itemize}
+    \end{enumerate}
+
 \item Suppose $X\sim Poisson (\lambda)$.
     \begin{itemize}
     \item [(a)] Show that $p(k+1)=\frac{\lambda}{k+1}p(k)$, where $p(k)=P(X=k)$.
@@ -129,7 +152,16 @@
         \end{itemize}
     \end{itemize}
 
-\item
+\item Let $X \sim Gemoetric(p)$.
+    \begin{enumerate}
+    \item [(a)] Show that $P(X>k)=(1-p)^k$ for any integer $k$.
+        \begin{itemize}
+        \item We know that the probability distribution is $p(x) = p(1 - p)^{x-1}$.
+        \item Therefore $p(x + 1) = p(1 - p)^x$, and the probability $P(X > k) = \sigma_{x=0}^k = \frac{r - r^{k+1}}{1-r}$
+
+        \end{itemize}
+    \item [(b)] Show that  $P(X> j+k|X > j)=P(X > k)$ for any integer $j,k\ge 0.$
+    \end{enumerate}
 
 \end{enumerate}
 
