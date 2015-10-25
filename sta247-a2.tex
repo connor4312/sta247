@@ -65,7 +65,7 @@
         \item The expected value is simply the weighted average of all values.
         \item This can be found with $E(X) = (0)(0.3) + (1)(0.4) + (2)(0.2) + (3)(0.1) = 1.1$.
         \end{itemize}
-    \item [(d)] Find $Var(X)$;
+    \item [(f)] Find $Var(X)$;
         \begin{itemize}
         \item The variance can be expressed as $Var(X) = E(X^2) - E(X)$.
         \item Therefore the variance is $Var(X) = E(X^2) - E(X)= (0.3)(0)^2 + (0.4)(1)^2 + (0.2)(2)^2 + (0.1)(3)^2 - 1.1= 1$.
@@ -155,23 +155,61 @@
     \begin{itemize}
     \item [(a)] A random variable $X$ has a binomial distribution, and a random variable $Y$ has a Poisson distribution. If $E(X)=E(Y)$, determine which random variable has the larger variance. Explain.
         \begin{itemize}
+        \item Although it was not stated, for the purpose of the question I am assuming that the probability $p$ is non-zero.
         \item If $E(X) = E(Y)$, then $np = \lambda$. Also, $V(Y) = \lambda$.
-        \item Also $np(1 - p) < np$ since it simplifies to $-p < 0$, and $p \in \mathbb{R}, 0 \leq p \leq 1$.
+        \item Also $np(1 - p) < np$ since it simplifies to $-p < 0$, and $p \in \mathbb{R}, 0 < p \leq 1$.
         \item Then $np(1 - p) < \lambda$.
         \item Then $V(X) < V(Y)$.
         \end{itemize}
+    \item [(b)] If $X\sim Bin(n,0.5)$, show that $p(k+1)=\frac{n-k}{k+1}p(k),\ \ k=0,1,\ldots, n-1$, where $p(k)=P(X=k)$.
+        \begin{itemize}
+        \item We know that $p(k) = \binom{n}{k} p^k (1 - p)^{n-k}$.
+        \item Then $p(k) = \frac{n!}{k!(n-k)!} p^k (1 - p)^{n-k}$.
+        \item Then $p(k) = \frac{n!}{k!(n-k)!} p^k (1 - p)^{n-k}$.
+        \item Then $p(k+1) = \frac{n!}{k!(n-k-1)!} p^{k+1} (1 - p)^{n-k-1}$.
+        \item Then $p(k+1) = \frac{n-k}{k+1} \frac{n!}{k!(n-k)!} \frac{p}{1-p} p(1-p)^{n-k}$
+        \item Then $p(k+1) = \frac{n-k}{k+1} p(k)$
+        \end{itemize}
+    \item [(c)] The number of telephone calls arriving at an exchange during any one hour period is a Poisson random variable with $\lambda=10$. Find the probability that during a fifteen-minute period there will be 4 calls.
+        \begin{itemize}
+        \item This is just plugging into the equations we know. If there's an average of 10 calls per hour, by definition there must be an average of 2.5 calls every 15 minutes.
+        \item Then we simply find $p(4)$ for $\lambda = 2.5$, which is $p(4) = \frac{2.5^4 e^{-4}}{4!} \approx 0.0298 $
+        \end{itemize}
     \end{itemize}
-\item Let $X \sim Gemoetric(p)$.
+\item Let $X \sim Geometric(p)$.
     \begin{enumerate}
     \item [(a)] Show that $P(X>k)=(1-p)^k$ for any integer $k$.
         \begin{itemize}
         \item We know that the probability distribution is $p(x) = p(1 - p)^{x-1}$.
-        \item Therefore $p(x + 1) = p(1 - p)^x$, and the probability $P(X > k) = \sigma_{x=0}^k = \frac{r - r^{k+1}}{1-r}$
-
+        \item Therefore $p(x + 1) = p(1 - p)^x$, and the probability $P(X > k) = \sum_{x=0}^k = \frac{r - r^{k+1}}{1-r}$
         \end{itemize}
     \item [(b)] Show that  $P(X> j+k|X > j)=P(X > k)$ for any integer $j,k\ge 0.$
+        \begin{itemize}
+        \item We know that $P(X > j) = (1 - p)^j$ by part a, and the $P(X > j + k) = (1 - p)^{j + k}$
+        \item Then $P(X > j + k | X > j) = \frac{P(X > j + k)}{P(X > j)} = \frac{(1 - p)^{j + k}}{(1 - p)^{j}} = (1 - p)^k$
+        \item Then $P(X > j + k | X > j) = P(X > k)$
+        \end{itemize}
     \end{enumerate}
-
+\item Let $X$ be a Poisson random variable such that $P(X=2)=\frac{2}{3}P(X=1)$.
+    \begin{enumerate}
+    \item [(a)] Find $E(X(X-1))$.
+        \begin{itemize}
+        \item First off, we were given that $P(X=2)=\frac{2}{3}P(X=1)$. Therefore $\frac{\lambda^2 e^{-\lambda}}{2!}=\frac{2}{3}\frac{\lambda^1 e^{-\lambda}}{1!}$.
+        \item We can solve this and find that either $\lambda = 0$ or $\lambda = \frac{4}{3}$. I'll presume the latter solution is the one we're interested in.
+        \item Then $E(X(X-1)) = E(X^2 - X) = \lambda^2 - \lambda = \frac{16}{9} - \frac{4}{3}$.
+        \item Then $E(X(X-1)) = \frac{4}{9} \approx 0.4444$.
+        \end{itemize}
+    \item [(b)] Find $P(X \ge 1)$.
+        \begin{itemize}
+        \item $P(X \ge 1) = 1 - P(X = 0)$ since $X \in \mathbb{N}$.
+        \item Then $P(X \ge 1) = 1 - \frac{(4/3)^0 e^{-4/3}}{0!}$
+        \item Then $P(X \ge 1) = 1 - e^{-\frac{4}{3}} \approx 0.7364$
+        \end{itemize}
+    \item [(c)] Find $P(X \le 10)$. [Use R to find the answer].
+        \begin{itemize}
+        \item Evaluated using R, $ppois(10, 4/3) = 1.000$
+        \end{itemize}
+    \end{enumerate}
 \end{enumerate}
 
 \end{document}
