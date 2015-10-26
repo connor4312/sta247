@@ -210,6 +210,49 @@
         \item Evaluated using R, $ppois(10, 4/3) = 1.000$
         \end{itemize}
     \end{enumerate}
+
+\item Use only the properties the Binomial, Geometric and Poisson distributions to find the exact value of the following sums:
+    \begin{enumerate}
+    \item [(a)] $\sum_{x=0}^{500} \frac{x-2}{x!(500-x)!}~(0.4)^x~(0.6)^{500-x}$.
+        \begin{itemize}
+        \item Note that $E(X)$ is defined as $E(X) = \sum_{x} x p(x)$.
+        \item Then $\frac{1}{500!} \sum_{x=0}^{500} \frac{(x-2)500!}{x!(500-x)!}~(0.4)^x~(0.6)^{500-x}$
+        \item Then the summation is equivalent to $\frac{1}{500!} E(X - 2) = \frac{(500 \times 0.4) - 2}{500!}$
+        \item Then $\sum_{x=0}^{500} \frac{x-2}{x!(500-x)!}~(0.4)^x~(0.6)^{500-x} = \frac{198}{500!} = 1.623 \times 10^{-1132}$
+        \end{itemize}
+    \item [(b)] $\sum_{x=0}^{\infty}\frac{x^2 2^x}{x!}$.
+        \begin{itemize}
+        \item Note that $E(X^2) = \sum_{x} x^2 p(x) $.
+        \item Then for a Poisson distribution $E(X^2) = \sum_{x=0}^{\infty} x^2 \frac{\lambda^x e^{-\lambda}}{x!}$
+        \item Then $E(X^2) = e^{-\lambda} \sum_{x=0}^{\infty} \frac{\lambda^x x^2}{x!}$
+        \item Then $\sum_{x=0}^{\infty} \frac{\lambda^x x^2}{x!} = E(X^2)e^\lambda = (\lambda^2 + \lambda)e^\lambda$
+        \item Then $\sum_{x=0}^{\infty} \frac{2^x x^2}{x!} = E(X^2)e^2 = (2^2 + 2)e^2 = 6 e^2$
+        \end{itemize}
+    \item [(c)] $\sum_{x=0}^{\infty}\frac{2^x}{x!}$.
+        \begin{itemize}
+        \item Recall that the sum of any probability distribution is 1. That is, $\sum_{x} p(x) = 1$.
+        \item For a Poisson distribution, that is $\sum_{x=0}^{\infty} \frac{\lambda^x e^{-\lambda}}{x!} = 1$.
+        \item Then $e^{-\lambda} \sum_{x=0}^{\infty} \frac{\lambda^x}{x!} = 1$.
+        \item Then $\sum_{x=0}^{\infty} \frac{\lambda^x}{x!} = e^{\lambda}$.
+        \item Then $\sum_{x=0}^{\infty} \frac{2^x}{x!} = e^2$.
+        \end{itemize}
+    \item [(d)] $\sum_{x=0}^{\infty}\frac{(x^2-x+1)2^x}{x!}$.
+        \begin{itemize}
+        \item For any distribution, $E(x^2 - x + 1) = \sum_{x} (x^2 - x + 1)p(x)$.
+        \item Then for a Poisson distribution:
+        \begin{equation*}
+        \begin{aligned}
+            E(X^2 - X + 1) =& \sum_{x=0}^{\infty} (x^2 - x + 1) \frac{\lambda^x e^{-\lambda}}{x!} \\
+            E(X^2) - E(X) + 1 =& e^{-\lambda} \sum_{x=0}^{\infty} \frac{(x^2 - x + 1) \lambda^x}{x!} \\
+            (E(X^2) - E(X) + 1)e^{\lambda} =&  \sum_{x=0}^{\infty} \frac{(x^2 - x + 1) \lambda^x}{x!} \\
+            (\lambda^2 + \lambda - \lambda + 1)e^{\lambda} =& \sum_{x=0}^{\infty} \frac{(x^2 - x + 1) \lambda^x}{x!} \\
+            (2^2 + 2 - 2 + 1)e^2 =& \sum_{x=0}^{\infty} \frac{(x^2 - x + 1) 2^x}{x!}
+        \end{aligned}
+        \end{equation*}
+        \item Then $\sum_{x=0}^{\infty}\frac{(x^2-x+1)2^x}{x!} = 5e^2 \approx 36.95$
+        \end{itemize}
+    \item [(e)] $\sum_{x=1}^{\infty}\frac{x^2}{2^x}$.
+    \end{enumerate}
 \end{enumerate}
 
 \end{document}
