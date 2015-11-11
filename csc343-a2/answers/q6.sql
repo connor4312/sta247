@@ -14,19 +14,19 @@ CREATE VIEW FirstAlbums AS (
 CREATE VIEW IndieCanadian AS (
     SELECT Artist.*
     FROM Artist, Album
-    WHERE Artist.artist_id = Album.artist_id AND
-          Artist.nationality = 'Canada' AND
-          Album.album_id IN (SELECT album_id FROM FirstAlbums) AND
-          NOT EXISTS (SELECT 1 FROM ProducedBy
+    WHERE Artist.artist_id = Album.artist_id
+      AND Artist.nationality = 'Canada'
+      AND Album.album_id IN (SELECT album_id FROM FirstAlbums)
+      AND NOT EXISTS (SELECT 1 FROM ProducedBy
             WHERE ProducedBy.album_id = Album.album_id));
 
 CREATE VIEW AmericanSigners AS (
     SELECT Artist.*
     FROM Artist, Album, ProducedBy, RecordLabel
-    WHERE Artist.artist_id = Album.artist_id AND
-          Album.album_id = ProducedBy.album_id AND
-          ProducedBy.label_id = RecordLabel.label_id AND
-          RecordLabel.country = 'America');
+    WHERE Artist.artist_id = Album.artist_id
+      AND Album.album_id = ProducedBy.album_id
+      AND ProducedBy.label_id = RecordLabel.label_id
+      AND RecordLabel.country = 'America');
 
 
 SELECT name artist_name FROM (
