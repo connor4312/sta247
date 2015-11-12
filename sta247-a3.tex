@@ -1,0 +1,34 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,graphicx,tikz,standalone}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usetikzlibrary{trees}
+\title{STA247 Fall 2015, Assignment 3}
+\author{Connor Peet \#1001088208}
+\renewcommand{\today}{~}
+\hypersetup{pdfpagemode=Fullscreen,
+  colorlinks=true,
+  linkfileprefix={}}
+\newcommand{\floor}[1]{\lfloor #1\rfloor}
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+\item The length of time for a student to be served at the university bookstore is a random variable having an exponential distribution with a mean of 4 minutes.
+    \begin{itemize}
+    \item [(a)] Find the probability that a student is served in less than 3 minutes.
+        \begin{itemize}
+        \item We know the pdf is defined as $f(x) = \lambda e^{-\lambda x}$, and $\mu = \frac{1}{\lambda}$.
+        \item So the cdf is $F(x) = \int_0^x f(x) dx = 1 - e^{-\lambda x}$, and $\lambda = \frac{1}{4}$.
+        \item So then $P(X < 3)$ is simply $F(3) = 1 - e^{-3/4} \approx 0.5276$
+        \end{itemize}
+    \item [(b)] Find the probability that a student is served in less than 3 minutes on at least 4 of the next 6 days?
+        \begin{itemize}
+        \item The serving times are independent, so we're essentially being asked for the chance that an event with a probability of 0.5276 will occur at least four times in six trials. In other words, $X \sim Bin(6, 1 - e^{-3/4})$.
+        \item So $P(X >= 4)$ could be written in R as $\mathrm{pbinom}(4, size=6, prob=(1 - exp(-3/4)) \approx 0.8625206$
+        \end{itemize}
+    \end{itemize}
+\end{enumerate}
+
+\end{document}
