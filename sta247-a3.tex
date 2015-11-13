@@ -48,6 +48,27 @@
         \item Then $E(T/3) \approx$
         \end{itemize}
     \end{itemize}
+
+\item Question 3:
+    \begin{itemize}
+    \item [(a)] Find $\Gamma\left(\frac{5}{2}\right)$.
+        \begin{equation*}
+        \begin{aligned}
+        \Gamma\left(\frac{5}{2}\right) = & \left(\frac{3}{2}\right) \Gamma\left(\frac{3}{2}\right) \\
+            = & \left(\frac{3}{2}\right) \left(\frac{1}{2}\right) \Gamma\left(\frac{1}{2}\right) \\
+            = & \left(\frac{3}{2}\right) \left(\frac{1}{2}\right) \sqrt{\pi} \\
+            = & \frac{3\sqrt{\pi}}{4} \approx 1.329
+        \end{aligned}
+        \end{equation*}
+    \end{itemize}
+    \item [(b)] Use part (a) and the pdf of the gamma distribution  to find the exact value of $\int_{0}^{\infty}x^{1.5}e^{-4x}dx$.
+        \begin{itemize}
+        \item Say that $y = \int_{0}^{\infty}x^{1.5}e^{-4x}dx$.
+        \item Then $\frac{4^{2.5}}{\Gamma(2.5)} y = \int_{0}^{\infty} \frac{4^{2.5}}{\Gamma(2.5)} x^{1.5}e^{-4x} dx$
+        \item Then it's clear the function $f(x)$ inside the integral describes $X \sim Gamma(2.5, 4)$, so $\int_{0}^{\infty} f(x) dx = 1$.
+        \item Then $\frac{4^{2.5}}{\Gamma(2.5)} y = 1$
+        \item Then $y = \int_{0}^{\infty}x^{1.5}e^{-4x}dx = \frac{\Gamma(2.5)}{4^{2.5}} \approx 0.0415$
+        \end{itemize}
 \end{enumerate}
 
 \end{document}
