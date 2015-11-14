@@ -69,6 +69,33 @@
         \item Then $\frac{4^{2.5}}{\Gamma(2.5)} y = 1$
         \item Then $y = \int_{0}^{\infty}x^{1.5}e^{-4x}dx = \frac{\Gamma(2.5)}{4^{2.5}} \approx 0.0415$
         \end{itemize}
+
+\item The grades of a certain probability exam are normally distributed with mean 75 and standard deviation 5.
+    \begin{itemize}
+    \item [(a)] Find the minimum grade for the top 10\% of the grades.
+        \begin{itemize}
+        \item We look on the normal distribution chart and find that the $Z$ in $P(0 \leq X \leq Z) = 0.4$ (and therefore $P(X > Z) = 0.10$) is $Z \approx 1.28$.
+        \item Then we plug that into the equation $Z = \frac{X - \mu}{\sigma}$ to find that the necessary grade $X = 81.4$.
+        \end{itemize}
+    \item [(b)] Find the proportion of grades that are greater than 80.
+        \begin{itemize}
+        \item Straightforward enough. $P(X > 80) = P(Z > \frac{80 - 75}{5}) = 0.5 - P(0 \leq Z \leq \frac{80 - 75}{5})$
+        \item Then $P(X > 80) = 0.5 - 0.3413 = 0.1587$.
+        \end{itemize}
+    \item [(c)] Ten grades are randomly selected, find the probability that at least two of these ten grades are each greater than 80.
+        \begin{itemize}
+        \item The distribution is modeled as $X \sim Binomial(10, 0.1587)$. Then $P(X \geq 2) = 1 - P(X = 0) - P(X = 1) = 0.4873$ (found using R).
+        \end{itemize}
+    \item [(d)] Hundred grades are randomly selected, find the probability that at least 20 of these grades are each greater than 80.
+        \begin{itemize} 1.130340839
+        \item This can be approximated using a normal distribution. We know $X \sim Binomial(100, 0.1587)$, so the approximation is $X \sim Normal(\mu = 15.87, \sigma^2 = 13.35)$.
+        \item Then we want $P(Z > \frac{20 - 15.87}{\sqrt{13.35}}) = 0.5 - P(0 \leq Z < \frac{20 - 15.87}{\sqrt{13.35}}) = 0.5 - 0.3708 = 0.1292$
+        \end{itemize}
+    \item [(e)] Use R to find the exact value in part (d).
+        \begin{itemize}
+        \item $1 - pbinom(20, size=100, prob=0.1587) = 0.1052639$
+        \end{itemize}
+    \end{itemize}
 \end{enumerate}
 
 \end{document}
