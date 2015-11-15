@@ -70,6 +70,51 @@
         \item Then $y = \int_{0}^{\infty}x^{1.5}e^{-4x}dx = \frac{\Gamma(2.5)}{4^{2.5}} \approx 0.0415$
         \end{itemize}
 
+\item [4.] Use the pdf of the normal distribution to find the exact value of the following integrals.
+    \begin{itemize}
+    \item $\int_{-\infty}^{\infty}e^{-\frac{1}{8}(x+5)^2}dx$.
+        \begin{itemize}
+        \item We can manipulate this into what looks like the equation of a normal distribution.
+        \begin{equation*}
+            \begin{aligned}
+            y = & \int_{-\infty}^{\infty}e^{-\frac{1}{8}(x+5)^2} \\
+            \frac{y}{\sqrt{2 \pi} 2} = & \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi} 2} e^{-(x - (-5))^2 / (2 \times 2^2)}
+            \end{aligned}
+        \end{equation*}
+        \item Then the right-hand side is the cumulative distribution of $Y \sim N(-5, 4)$, so it evaluates to $1$.
+        \item Then $y = \int_{-\infty}^{\infty}e^{-\frac{1}{8}(x+5)^2}dx = 2 \sqrt{2 \pi} \approx 5.0133 $
+        \end{itemize}
+    \item $\int_{-\infty}^{\infty}(x^2-x+3)e^{-\frac{1}{8}(x+5)^2}dx$.
+        \begin{itemize}
+        \item First, we can split this into multiple integrals. Then we can recognize the expected value from it, and use the values found in part (a) to solve it.
+        \begin{equation*}
+            \begin{aligned}
+            w = & \int_{-\infty}^{\infty}(x^2-x+3)e^{-\frac{1}{8}(x+5)^2}dx \\
+            w = & \int_{-\infty}^{\infty}x^2 e^{-\frac{1}{8}(x+5)^2} - x e^{-\frac{1}{8}(x+5)^2} + 3 e^{-\frac{1}{8}(x+5)^2}dx \\
+            w = & 2\sqrt{2 \pi} \int_{-\infty}^{\infty}x^2 \frac{1}{2\sqrt{2 \pi}} e^{-\frac{1}{8}(x+5)^2} \\
+                & \quad - 2\sqrt{2 \pi} \int_{-\infty}^{\infty} x \frac{1}{2\sqrt{2 \pi}} e^{-\frac{1}{8}(x+5)^2} \\
+                & \quad + 3\int_{-\infty}^{\infty} e^{-\frac{1}{8}(x+5)^2}dx \\
+            w = & 2\sqrt{2 \pi}(E(Y^2) - E(Y)) + 3y \\
+            w = & 2\sqrt{2 \pi}((4 + 5^2) + 5 + 3) \\
+            w = & 74 \sqrt{2 \pi} \approx 185.5
+            \end{aligned}
+        \end{equation*}
+        \end{itemize}
+    \item $\int_{-\infty}^{\infty}e^{-\frac{1}{8}x^2+6x+2}dx$.
+        \begin{itemize}
+        \item We complete the square, then it all flows down nicely like part (a).
+        \begin{equation*}
+            \begin{aligned}
+            z = & \int_{-\infty}^{\infty} e^{-\frac{1}{8}(x^2 - 48x - 16)}dx \\
+            z = & \int_{-\infty}^{\infty} e^{-\frac{1}{8}(x^2 - 48x +576) + \frac{592}{8}}dx \\
+            z = & \int_{-\infty}^{\infty} e^{\frac{592}{8}} e^{-\frac{1}{8}(x - 24)^2}dx \\
+            \frac{z}{2\sqrt{2 \pi} e^{\frac{592}{8}}} = & \int_{-\infty}^{\infty} \frac{1}{\sqrt{2 \pi} 2} e^{-\frac{1}{8}(x - 24)^2}dx = 1 \\
+            z = & 2\sqrt{2 \pi} e^{\frac{592}{8}} \approx 6.885 \times 10^{32}
+            \end{aligned}
+        \end{equation*}
+        \end{itemize}
+    \end{itemize}
+
 \item The grades of a certain probability exam are normally distributed with mean 75 and standard deviation 5.
     \begin{itemize}
     \item [(a)] Find the minimum grade for the top 10\% of the grades.
@@ -87,7 +132,7 @@
         \item The distribution is modeled as $X \sim Binomial(10, 0.1587)$. Then $P(X \geq 2) = 1 - P(X = 0) - P(X = 1) = 0.4873$ (found using R).
         \end{itemize}
     \item [(d)] Hundred grades are randomly selected, find the probability that at least 20 of these grades are each greater than 80.
-        \begin{itemize} 1.130340839
+        \begin{itemize}
         \item This can be approximated using a normal distribution. We know $X \sim Binomial(100, 0.1587)$, so the approximation is $X \sim Normal(\mu = 15.87, \sigma^2 = 13.35)$.
         \item Then we want $P(Z > \frac{20 - 15.87}{\sqrt{13.35}}) = 0.5 - P(0 \leq Z < \frac{20 - 15.87}{\sqrt{13.35}}) = 0.5 - 0.3708 = 0.1292$
         \end{itemize}
