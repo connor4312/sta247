@@ -2,6 +2,7 @@
 \usepackage{amsmath,amssymb,graphicx,tikz}
 \usepackage{hyperref}
 \usepackage{tikz}
+\usepackage{amsfonts}
 \usepackage{amsmath}
 \usetikzlibrary{trees}
 \title{STA247 Fall 2015, Assignment 3}
@@ -13,6 +14,8 @@
 \newcommand{\floor}[1]{\lfloor #1\rfloor}
 \begin{document}
 \maketitle
+
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 
 \begin{enumerate}
 \item The length of time for a student to be served at the university bookstore is a random variable having an exponential distribution with a mean of 4 minutes.
@@ -139,6 +142,24 @@
     \item [(e)] Use R to find the exact value in part (d).
         \begin{itemize}
         \item $1 - pbinom(20, size=100, prob=0.1587) = 0.1052639$
+        \end{itemize}
+    \end{itemize}
+
+\item [(6)] Suppose that $X_1,\ldots,X_{200}$ are independent continuous random variables with common density function.
+    \begin{itemize}
+    \item [(a)] Compute the mean and the variance of $X_i$.
+        \begin{itemize}
+        \item The mean is $F(\mu) = 0.5$ where $F(x) = \int_0^x 2(1 - p)dp$.
+        \item Then $F(X) = -x(x - 2), x \in \mathbb{R} 0 < x < 1$, so $\mu = 0.2929$.
+        \item The variance is defined as $\sigma^2 = \int_{-\infty}^{\infty} (x - \mu)^2 f(x) dx$.
+        \item Then $\sigma^2 = 0.0571$.
+        \end{itemize}
+    \item [(b)] Define $S=X_1+\ldots+X_{200}$. Using the central limit theorem, find $P(S>70)$.
+        \begin{itemize}
+        \item From unit 7, we have definitions for $\overbar{Y} = \frac{1}{n} \sum_{i = 1}^n Y_i$, that $E(\overbar{Y}) = \mu$ and $V(\overbar{Y}) = \frac{\sigma^2}{2}$.
+        \item However, $\overbar{X}$ in this case is missing the divisor. So then we solve to remove that, and get $E(\overbar{X}) = 200 \mu$ and $V(\overbar{X}) = \sigma^2$.
+        \item We know that for large samples, $\overbar{Y} \approx N(E(\overbar{X}), V(\overbar{X}))$. So $P(S > 70) = 0.5 - P(Z > \frac{70 - 200 \times 0.2929}{\sqrt{\0.0571}})$.
+        \item So $P(S > 70) = 47.791212581$.
         \end{itemize}
     \end{itemize}
 \end{enumerate}
