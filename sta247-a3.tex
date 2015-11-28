@@ -39,15 +39,15 @@
         \begin{itemize}
         \item We know $\mu_X = 4$, so $\mu_T = 3\mu_X = 12$.
         \item Then $\lambda_T = \frac{1}{12}$.
-        \item Then $f(T) = \frac{1}{14} e^{-\frac{x}{14}}$.
+        \item Then $f(T) = \frac{1}{12} e^{-\frac{x}{12}}$.
         \end{itemize}
     \item [(b)] Find $P(T>7)$. Use R to find the answer.
         \begin{itemize}
-        \item $P(T > 7) = 1 - \int_0^7 \frac{1}{14} e^{-\frac{x}{14}} = 0.6065 dx$.
+        \item $P(T > 7) = 1 - \int_0^7 \frac{1}{12} e^{-\frac{x}{12}} = 0.5580 dx$.
         \end{itemize}
     \item [(c)] Find $E(T/3)$ and $Var(T/3)$.
         \begin{itemize}
-        \item $E(T/3) = \int_{-\infty}^{\infty} \frac{x}{3} g(x) dx = \frac{1}{3} \int_{-\infty}^{\infty} x g(x) dx = \frac{E(T)} / 3$.
+        \item $E(T/3) = \int_{-\infty}^{\infty} \frac{x}{3} g(x) dx = \frac{1}{3} \int_{-\infty}^{\infty} x g(x) dx = \frac{E(T)}{3}$.
         \item Then $E(T/3) = 4$, which make sense. Also, $\lambda = \frac{1}{4}$ once again.
         \item Then $V(T/3) = 16$.
         \end{itemize}
@@ -76,7 +76,7 @@
 
 \item Use the pdf of the normal distribution to find the exact value of the following integrals.
     \begin{itemize}
-    \item $\int_{-\infty}^{\infty}e^{-\frac{1}{8}(x+5)^2}dx$.
+    \item [(a)] $\int_{-\infty}^{\infty}e^{-\frac{1}{8}(x+5)^2}dx$.
         \begin{itemize}
         \item We can manipulate this into what looks like the equation of a normal distribution.
         \begin{equation*}
@@ -88,7 +88,7 @@
         \item Then the right-hand side is the cumulative distribution of $Y \sim \mathcal{N}(-5, 4)$, so it evaluates to $1$.
         \item Then $y = \int_{-\infty}^{\infty}e^{-\frac{1}{8}(x+5)^2}dx = 2 \sqrt{2 \pi} \approx 5.0133 $
         \end{itemize}
-    \item $\int_{-\infty}^{\infty}(x^2-x+3)e^{-\frac{1}{8}(x+5)^2}dx$.
+    \item [(b)] $\int_{-\infty}^{\infty}(x^2-x+3)e^{-\frac{1}{8}(x+5)^2}dx$.
         \begin{itemize}
         \item First, we can split this into multiple integrals. Then we can recognize the expected value from it, and use the values found in part (a) to solve it.
         \begin{equation*}
@@ -104,7 +104,7 @@
             \end{aligned}
         \end{equation*}
         \end{itemize}
-    \item $\int_{-\infty}^{\infty}e^{-\frac{1}{8}x^2+6x+2}dx$.
+    \item [(c)] $\int_{-\infty}^{\infty}e^{-\frac{1}{8}x^2+6x+2}dx$.
         \begin{itemize}
         \item We complete the square, then it all flows down nicely like part (a).
         \begin{equation*}
@@ -144,7 +144,7 @@
         \begin{itemize}
         \item $1 - pbinom(20, size=100, prob=0.1587) = 0.1052639$
         \end{itemize}
-    \item [(d)] Find the probability that the average of a sample of 9 grades is greater than 80.
+    \item [(f)] Find the probability that the average of a sample of 9 grades is greater than 80.
         \begin{itemize}
         \item The sample size here is relatively low, but since we already know the grades are already normally distributed, we can use the central limit theorem to figure the probability.
         \item The distribution can therefore be described as $X \sim \mathcal{N}(75, \frac{5^2}{9})$, and we want to find $P(X > 80)$.
@@ -154,21 +154,21 @@
 
 \item Question 6
     \begin{itemize}
-    \item Compute the mean and the variance of $X_i$.
+    \item [(a)] Compute the mean and the variance of $X_i$.
         \begin{itemize}
         \item The the mean of $f(x)$ for $0 < x < 1$ is just $\int_0^1 x2(1 - x)dx$.
         \item So $\mu = \frac{1}{3}$.
         \item The variance is $\sigma^2 = \int_0^1 x2(1 - x)dx$.
         \item So $\sigma^2 = \frac{1}{6}$.
         \end{itemize}
-    \item Define $S=X_1+\ldots+X_{200}$. Using the central limit theorem, find $P(S>70)$.
+    \item [(b)] Define $S=X_1+\ldots+X_{200}$. Using the central limit theorem, find $P(S>70)$.
         \begin{itemize}
         \item The central limit theorem defines $S' \sim \mathcal{N}(\frac{1}{3}, \frac{1/6}{200}$, where $S' = \frac{S}{200}$.
         \item Logically, $S'$ is looking for the average of the values. If the average is above $\frac{70}{200}$, then $S > 70$.
         \item Then $P(S > 70) = P(S' > 0.35) = 0.5 - P(0 \leq Z \leq \frac{0.35 - \frac{1}{3}}{\sqrt{1/6}}$.
         \item Then $P(S > 70) \approx 0.4841$
         \end{itemize}
-    \item Compute $P(T\ge3)$.
+    \item [(c)] Compute $P(T\ge3)$.
         \begin{itemize}
         \item It's the same deal here, but this time $\mu = 0.1$ and $\sigma^2 = 0.1(1 - 0.1)$. So $T' \sim \mathcal{N}(0.1, \frac{0.1(1 - 0.1)}{200})$.
         \item Then $P(T \geq 3) = P(T' \geq \frac{3}{200}) = P(Z \geq \frac{0.015 - 0.1}{\sqrt{\frac{0.1(1 - 0.1)}{200}}})$.
@@ -178,17 +178,17 @@
 
 \item Show that:
     \begin{itemize}
-    \item If $X \sim N(0,1)$, then $M(t)=E(e^{tX})=e^{t^2/2}$.
+    \item [(a)] If $X \sim N(0,1)$, then $M(t)=E(e^{tX})=e^{t^2/2}$.
         \begin{equation*}
         \begin{aligned}
         E(e^{tX}) = & \int_{-\infty}^{\infty} \frac{e^{tx}}{\sqrt{2\pi}} e^{-x^2 / 2} dx \\
-        E(e^{tX}) = & \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-(x^2 - 2tx) / 2 + x} dx \\
+        E(e^{tX}) = & \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-(x^2 - 2tx) / 2} dx \\
         E(e^{tX}) = & \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-(x^2 - 2tx + t^2) / 2 + \frac{t^2}{2}} dx \\
         E(e^{tX}) = & e^{\frac{t^2}{2}} \int_{-\infty}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-(x^2 - t) / 2} dx \\
         E(e^{tX}) = & e^{\frac{t^2}{2}} \times 1 = e^{\frac{t^2}{2}}
         \end{aligned}
         \end{equation*}
-    \item If $X\sim Binomial (n,P)$, then $M(t)=E(e^{tX})=(pe^t+q)^n$, where $q=1-p$.
+    \item [(b)] If $X\sim Binomial (n,P)$, then $M(t)=E(e^{tX})=(pe^t+q)^n$, where $q=1-p$.
         \begin{equation*}
         \begin{aligned}
             E(e^{tX}) = & \sum_{x = 1}^n e^{tx} \binom{n}{x} p^x q^{n - x} \\
@@ -201,16 +201,14 @@
 
 \item Interesting application of moment generating function.
     \begin{itemize}
-    \item Show that $M(t)=E(e^{tX})=\sum_{k=0}^\infty E(X^k) \frac{t^k}{k!}$.
+    \item [(a)] Show that $M(t)=E(e^{tX})=\sum_{k=0}^\infty E(X^k) \frac{t^k}{k!}$.
         \begin{equation*}
         \begin{aligned}
-            M(t) =& E(e^{tX}) = \sum_x e^{tx}f(x) \\
-            M(t) =& e^0x f(x) + e^{x} f'(x) + e^{2x} f''(x) + \ldots \\
-            M(t) =& \sum_{k=0}^\infty \frac{0^k}{k!} f(x) + \sum_{k=0}^\infty \frac{1^k}{k!} f'(x) + \sum_{k=0}^\infty \frac{2^k}{k!} f''(x) + \ldots \\
-            M(t) =& \sum_{k=0}^\infty E(X^k) \frac{t^k}{k!}
+            M(t) =& E(e^{tX}) = \sum_{k = 0}^\infty e^{tx}f(x) \\
+            M(t) =& E\left(\sum_{k = 0}^\infty X^k e^{tx}\right) \\
+            M(t) =& \sum_{k = 0}^\infty E(X^k) \frac{t^k}{k!}
         \end{aligned}
         \end{equation*}
-
     \end{itemize}
 
 \item [(6)] Suppose that $X_1,\ldots,X_{200}$ are independent continuous random variables with common density function.
