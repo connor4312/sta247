@@ -37,4 +37,7 @@
     <Oscar OID="oscar_12" year="2010">
         <Type>Best Achievement in Makeup</Type>
     </Oscar>
+    <Oscar OID="oscar_6" year="2006">
+        <Type>Best Performance by an Actor in a Leading Role</Type>
+    </Oscar>
 </Oscars>

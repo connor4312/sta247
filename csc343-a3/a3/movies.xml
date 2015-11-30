@@ -61,5 +61,6 @@
             <SubCategory>Adventure</SubCategory>
         </Genre>
         <Oscar OID="oscar_12" />
+        <Oscar OID="oscar_6" />
     </Movie>
 </Movies>
