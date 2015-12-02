@@ -1,0 +1,59 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,graphicx,tikz}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\title{CSC343 Fall 2015, Assignment 3}
+\author{Connor Peet \#1001088208}
+\renewcommand{\today}{~}
+\hypersetup{pdfpagemode=Fullscreen,
+  colorlinks=true,
+  linkfileprefix={}}
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+\item
+    \begin{enumerate}
+    \item [(a)]
+        \begin{itemize}
+        \item $BH \rightarrow AD$ is fine. $BH^+$ includes all columns.
+        \item $D \rightarrow BH$ is fine. $D^+$ includes all columns.
+        \item $BCE \rightarrow F$ is \textbf{invalid}; its closure only contains $CF$.
+        \item $F \rightarrow C$ is \textbf{invalid}; its closure only contains $C$.
+        \item $A \rightarrow GEF$ is \textbf{invalid}; its closure only contains $CEFG$.
+        \end{itemize}
+    \item [(b)]
+        \begin{itemize}
+        \item Let's start with splitting out $D \rightarrow BH$. We get the relation $DBH$ with FDs $D \rightarrow BH, BH \rightarrow D \right\}$.
+        \item We're left with $ABCEFG$. Split out $F \rightarrow
+
+        \item At the end, we have:
+            \begin{equation*}
+            \begin{aligned}
+            R_1 =& BDH, \left\{D \rightarrow BH, BH \rightarrow D \right\} \\
+            R_2 =& A, \left\{D \rightarrow A \right\}
+            \end{aligned}
+            \end{equation*}
+
+        \item First, we can put the two BCNF relations together, in a relation with columns $ABCDEFGH$ and FDs $\left\{BH \rightarrow ACDEFG, D \rightarrow BH}$.
+        \item Then, we can decompose out $BCE \rightarrow F$ to form a new relation with columns $BCEF$ and FDs $\left\{BHD \rightarrow ACEFG}$.
+        \item This creates a relation $ADGH$ with columns and FDs $\left\{A \rightarrow G, D \rightarrow G \right\}$
+        \item Columns: $ABCDEFGH$ \\
+            FDs: $\left\{BHD \rightarrow ACEFG}$
+        \item Columns: $BCEF$ \\
+            FDs: $\left\{BCE \rightarrow F\right\}$
+        \item Columns: $FC$ \\
+            FDs: $\left\{F \rightarrow C\right\}$
+        \item Columns: $CEFG$ \\
+            FDs: $\left\{A \rightarrow GEFC\right\}$
+        \end{itemize}
+    \end{enumerate}
+\item
+    \begin{enumerate}
+    \item [(b)] $\left\{D \rightarrow ABCEFG\right\}$
+    \end{enumerate}
+\end{enumerate}
+
+\end{document}
