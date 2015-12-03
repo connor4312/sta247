@@ -4,6 +4,7 @@
 \usepackage{tikz}
 \usepackage{amsfonts}
 \usepackage{amsmath}
+
 \title{CSC343 Fall 2015, Assignment 3}
 \author{Connor Peet \#1001088208}
 \renewcommand{\today}{~}
@@ -26,33 +27,67 @@
         \end{itemize}
     \item [(b)]
         \begin{itemize}
-        \item Let's start with splitting out $D \rightarrow BH$. We get the relation $DBH$ with FDs $D \rightarrow BH, BH \rightarrow D \right\}$.
-        \item We're left with $ABCEFG$. Split out $F \rightarrow
-
+        \item Decompose using $F \rightarrow C$. $F^+ = C$, so we have $R_1 = FC$ and $R_2 = ABDEFGH$. The FD projection on $R_1$ that is quite easy -- $F \rightarrow C$ -- and that's in BCNF. Our remaining FDs for $R_2$ are $\left\{BH \rightarrow AD, D \rightarrow BH, BE \rightarrow F, A \rightarrow GEF \right\}$.
+        \item Decompose using $A \rightarrow GEF$. $A^+ = EFG$, so we have $R_3 = AEFG$ and $R_4 = ABDH$. The FD projection on $R_3$ is $A \rightarrow EFG$, and that's in BCNF. Our remaining FDs for $R_4$ are $\left\{BH \rightarrow AD, D \rightarrow BH \right\}$.
+        \item $R_4$ is in BCNF, since both the FDs include all other columns.
         \item At the end, we have:
             \begin{equation*}
             \begin{aligned}
-            R_1 =& BDH, \left\{D \rightarrow BH, BH \rightarrow D \right\} \\
-            R_2 =& A, \left\{D \rightarrow A \right\}
+            R_1 =& FC, \left\{F \rightarrow C \right\} \\
+            R_3 =& AEFG, \left\{A \rightarrow EFG \right\} \\
+            R_4 =& ABDH, \left\{BH \rightarrow AD, D \rightarrow BH \right\} \\
             \end{aligned}
             \end{equation*}
-
-        \item First, we can put the two BCNF relations together, in a relation with columns $ABCDEFGH$ and FDs $\left\{BH \rightarrow ACDEFG, D \rightarrow BH}$.
-        \item Then, we can decompose out $BCE \rightarrow F$ to form a new relation with columns $BCEF$ and FDs $\left\{BHD \rightarrow ACEFG}$.
-        \item This creates a relation $ADGH$ with columns and FDs $\left\{A \rightarrow G, D \rightarrow G \right\}$
-        \item Columns: $ABCDEFGH$ \\
-            FDs: $\left\{BHD \rightarrow ACEFG}$
-        \item Columns: $BCEF$ \\
-            FDs: $\left\{BCE \rightarrow F\right\}$
-        \item Columns: $FC$ \\
-            FDs: $\left\{F \rightarrow C\right\}$
-        \item Columns: $CEFG$ \\
-            FDs: $\left\{A \rightarrow GEFC\right\}$
         \end{itemize}
     \end{enumerate}
 \item
     \begin{enumerate}
-    \item [(b)] $\left\{D \rightarrow ABCEFG\right\}$
+    \item [(a)] Using the closure test, we find that:
+        \begin{itemize}
+        \item $DBE^+$ includes all columns, $DBE$ is a superkey.
+        \item $CD^+$ includes all columns, $CD$ is a superkey.
+        \item $D^+$ includes all columns, $D$ is a superkey.
+        \item $BADE^+$ includes all columns, $BADE$ is a superkey.
+        \item $ABD^+$ includes all columns, $ABDBADE$ is a superkey.
+        \item $EF^+$ does not include all columns, it is not a key.
+        \end{itemize}
+        Further, we can see that $D$ is a candidate key.
+    \item [(b)] We were given:
+            \begin{equation*}
+            \begin{aligned}
+            & \big\{DBE \rightarrow FC, CD \rightarrow AF, D \rightarrow AB, D \rightarrow G, \\
+            & \qquad BADE \rightarrow C, ABD \rightarrow E, D \rightarrow F, EF \rightarrow B \big\} \\
+            \end{aligned}
+            \end{equation*}
+        Via expansion of multivalue RHSes.
+            \begin{equation*}
+            \begin{aligned}
+            & \big\{DBE \rightarrow C, DBE \rightarrow F, CD \rightarrow A, CD \rightarrow F, \\
+            & \qquad D \rightarrow A, D \rightarrow B, D \rightarrow G, BADE \rightarrow C, \\
+            & \qquad ABD \rightarrow E, D \rightarrow F, EF \rightarrow B \big\}
+            \end{aligned}
+            \end{equation*}
+        It's now apparent that D's 1-to-1 relationships make many FDs redundant. Let's prune them.
+            \begin{equation*}
+            \begin{aligned}
+            & \text{First, remove directly redundant things:} \\
+            & \big\{DBE \rightarrow C, D \rightarrow A, D \rightarrow B, D \rightarrow G, \\
+            & \qquad BADE \rightarrow C, ABD \rightarrow E, D \rightarrow F, EF \rightarrow B \big\} \\
+            & \text{From D we have A and B, so from D we have E.} \\
+            & \big\{DBE \rightarrow C, D \rightarrow A, D \rightarrow B, D \rightarrow G, \\
+            & \qquad BADE \rightarrow C, D \rightarrow E, D \rightarrow F, EF \rightarrow B \big\} \\
+            & \text{Then, we also have C...} \\
+            & \big\{D \rightarrow A, D \rightarrow B, D \rightarrow C, D \rightarrow E, \\
+            & \qquad D \rightarrow F, D \rightarrow G, EF \rightarrow B \big\}
+            \end{aligned}
+            \end{equation*}
+        Thus, we have found the minimal basis.
+    \item [(c)] From the minimal basis, we end with two relations:
+        \begin{itemize}
+        \item $R_1$ with columns $EFB$ and FDs $EF \rightarrow B$
+        \item $R_2$ with columns $ACDEF$ and FDs $D \rightarrow ACEF$.
+        \end{itemize}
+    \item [(d)] The schema does not allow redundancy.
     \end{enumerate}
 \end{enumerate}
 
