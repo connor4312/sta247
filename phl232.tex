@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb,graphicx,tikz}
+\usepackage{setspace}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{csquotes}
+\title{PHL242 Paper}
+\author{Connor Peet \#1001088208}
+\hypersetup{pdfpagemode=Fullscreen,
+  colorlinks=true,
+  linkfileprefix={}}
+\onehalfspacing
+\setlength{\parskip}{1em}
+\begin{document}
+\maketitle
+
+\underline{Prompt:}
+\begin{displayquote}
+``Billy and Suzy throw rocks at a bottle. Suzy throws first, or maybe she throws harder. Her rock arrives first. The bottle shatters. When Billy's rock gets to where the bottle used to be, there is nothing there but flying shards of glass. Without Suzy's throw, the impact of Billy's rock on the intact bottle would have been one of the final steps in the causal chain from Billy's throw to the shattering of the bottle. But, thanks to Suzy's pre-empting throw, that impact never happens.''
+
+Why do examples like this raise problems for counterfactual theories of causation? Do they raise similar problems for regularity theories? Could a choice between theories of these two kinds be justified on the basis of which deals with examples like this one more effectively?
+\end{displayquote}
+
+To address the issue, first let us briefly review what counterfactuals are. A conditional is a statement that relates two states or actions, `if p then q' (or, written formally, $p \implies q$). For example, the statement ``if it is not a week day, then it is a weekend,'' is a conditional. The statement is intuitive to the reader, because the truth of the antecedent necessarily entails the truth of the consequent. However, if one forms a statement in which the antecedent is \textit{always} false, then anything can truthfully be entailed by the consequent. For instance, ``if I had woken up earlier this morning, I would have seen UFOs out the window.'' This type of statement is referred to as a counterfactual conditional, which by formal logic is true.
+
+For most philosophers, insisting on the truth of all counterfactual conditionals is not a very satisfying endeavour. David Lewis makes use of Robert Nozick's concept of possible worlds to provide an alternative account for the truth of counterfactuals. He says that, for a counterfactual $p \implies q$, the statement is true if and only if in the nearest possible $p$ worlds, $q$ is true. By this account, the statement about UFOs is false---at least, I didn't read anything in the paper to the contrary---but one such as ``if I had studied harder, I would have done better on the exam'' is plausible.
+
+Lewis extends account of counterfactuals to claims about causality. Given an event $p$ followed by event $q$, he posits the $q$ is causally dependent on $p$ if and only if:
+    \begin{itemize}
+    \item in the nearest worlds where p happened, then q would have happened and;
+    \item in the nearest worlds where p did not happen, then q would not have happened.
+    \end{itemize}
+At face value this seems an attractive claim, but there are cases where problems may arise.
+
+\begin{displayquote}
+``Billy and Suzy throw rocks at a bottle. Suzy throws first, or maybe she throws harder. Her rock arrives first. The bottle shatters. When Billy's rock gets to where the bottle used to be, there is nothing there but flying shards of glass. Without Suzy's throw, the impact of Billy's rock on the intact bottle would have been one of the final steps in the causal chain from Billy's throw to the shattering of the bottle. But, thanks to Suzy's pre-empting throw, that impact never happens.''
+\end{displayquote}
+
+In this example, it is quite clear to the reader the Suzy's throw caused the bottle to shatter, and that Billy's did not. However, by Lewis' account, neither Billy's nor Suzy's throw could have caused the bottle to shatter. In a nearby world where Suzy's throw was perhaps slower or a gust of wind changed its trajectory (a not-$p_S$ world), her rock would not have shattered the glass, but it still would end up being broken by Billy's rock ($q$ would have occurred). Likewise, in the current world, Billy's throw was ineffective (not-$p_B$), but the glass still shattered ($q$ occurred).
+
+The regularity theory of causation provides some answers where Lewis' account falls short. It is focused on finding the instantiated relationship between two events, and basic proposals apply the concepts of necessity and sufficiency between $p$ and $q$. Let us evaluate the efficacy of these proposals on the given scenario.
+
+    \begin{itemize}
+    \item \underline{Proposal:} $p$ causes $q$ iff $p$ is necessary for the occurrence of $q$. \smallbreak
+        This proposal does not provide a solution; if Suzy's rock had not shattered the glass, Billy's would have. Her throw was not necessary for $q$.
+    \item \underline{Proposal:} $p$ causes $q$ iff $p$ is necessary and sufficient for the occurrence of $q$. \smallbreak
+        This is a stronger claim than that of necessity, and does not provide a solution by virtue of the above.
+    \item \underline{Proposal:} $p$ causes $q$ iff $p$ is sufficient for the occurrence of $q$. \smallbreak
+        This proposal works well in the above case. It's Suzy's throw, while not necessary, was sufficient for the shattering of the glass. However, this proposal is not immune from counterexamples, which show it to be a rather unsatisfactory account of causation.
+    \end{itemize}
+
+J.L. Mackie provides a more intricate regular theory based on the notion of INUS conditions. An event $p$ is said to be an INUS condition for event $q$ if, given events $x$ and $y$, $ax$ or $y$ is necessary and sufficient for $q$, but $x$ by itself it not sufficient. In a slightly more formal notation, $q, x, y \in \text{Events}, \lnot\mathrm{SufficientForQ}(x) \land \mathrm{SufficientForQ}((p \land x) \lor y) \implies \text{p is an INUS condition}$. Based upon this, Mackie asserts that $p$ causes $q$ if:
+
+    \begin{itemize}
+    \item $p$ is an INUS condition for $q$;
+    \item $p$ and $x$ were present when $q$ occurred;
+    \item there was no $y$ present (essentially, there were no viable alternative causes of $q$).
+    \end{itemize}
+
+In the situation involving the thrown rock, we can define $p$ to be that the rock was thrown, $x$ to be that the bottle is within the trajectory of the rock, and $q$ to be that the bottle shatters. Suzy's throw satisfies causal constraints, however Billy's does not---there was no bottle in the trajectory of his rock. Therefore, it appears that Mackie's account of causation provides a suitable solution to the scenario.
+
+\end{document}
